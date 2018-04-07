@@ -56,9 +56,10 @@ server<-function(input, output) {
   })
   # Show the values using an HTML plot
   output$pointPlot <- reactivePlot(function() {
-    ggplot(data=data_chosen(),aes(x=house_size,y=price))+
-      geom_point(aes(color = house_layout,size=5))+
+    p<-ggplot(data=data_chosen(),aes(x=house_size,y=price))+
+      geom_point(aes(color = house_layout),size=5)+
       xlab("房间大小（平方米）")+ylab("月租金（元）")
+    print(p)
   })
   }
 
