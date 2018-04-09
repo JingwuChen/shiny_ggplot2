@@ -1,4 +1,5 @@
 library(shiny)
+library(ggplot2)
 
 ui<-pageWithSidebar(
   
@@ -49,6 +50,7 @@ server<-function(input, output) {
                          "Panyu"="番禺",
                         "全广州")
     if(index_chosen=="全广州"){
+      data$district<-factor(data$district)
       data_use<-data
     } else {
       data_use<-data[data$district==index_chosen,]
@@ -56,9 +58,17 @@ server<-function(input, output) {
   })
   # Show the values using an HTML plot
   output$pointPlot <- reactivePlot(function() {
+    if(input$district=="Guangzhou"){
+      p<-ggplot(data=data_chosen(),aes(x=house_size,y=price))+
+        scale_shape_manual(values=1:nlevels(data_chosen()$district))+
+        geom_point(aes(color = house_layout,shape=district),size=5)+
+        xlab("房间大小（平方米）")+ylab("月租金（元）")
+    }
+    else {
     p<-ggplot(data=data_chosen(),aes(x=house_size,y=price))+
       geom_point(aes(color = house_layout),size=5)+
       xlab("房间大小（平方米）")+ylab("月租金（元）")
+    }
     print(p)
   })
   }
