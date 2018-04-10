@@ -19,7 +19,7 @@ ui<-pageWithSidebar(
                       "海珠" = "Haizhu",
                       "荔湾" = "Liwan",
                       "黄埔"="Huangpu",
-                      "番禺"="Panyu"))
+                      "番禺"="Panyu"))
   
   ),
   # Show a plot summarizing the values entered
@@ -47,7 +47,7 @@ server<-function(input, output) {
                          "Haizhu"="海珠" ,
                          "Liwan"="荔湾" ,
                          "Huangpu"="黄埔",
-                         "Panyu"="番禺",
+                         "Panyu"="番禺",
                         "全广州")
     if(index_chosen=="全广州"){
       data$district<-factor(data$district)
