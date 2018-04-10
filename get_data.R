@@ -30,7 +30,12 @@ get_data<-function(n=10) {
   data<-c()
   if(n<=50){
   for(i in 1:n){
+    if(i==1){
+      url<-"https://gz.zu.anjuke.com/"
+    }
+    else {
     url<-sprintf("https://gz.zu.anjuke.com/fangyuan/p%d/",i)
+    }
     master<-get_response(url)
     data<-rbind(master,data)
    
